@@ -1794,36 +1794,57 @@
           href="https://v2l.ccdnss.com/styles/css/fonts/fallback_fonts.06073f53675cb22cbef2c1e851d066e2.css"
           type="text/css">
    <script type="text/javascript">
-    function isMobile() {
-        ///<summary>Detecting whether the browser is a mobile browser or desktop browser</summary>
-        ///<returns>A boolean value indicating whether the browser is a mobile browser or not</returns>
-
-        if (sessionStorage.desktop) // desktop storage
-            return false;
-        else if (localStorage.mobile) // mobile storage
-            return true;
-
-        // alternative
-        var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini', 'windows mobile', 'windows phone', 'iemobile'];
-        for (var i in mobile) if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) return true;
-
-        // nothing found.. assume desktop
-        return false;
+   var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
     }
+};
+// alert(isMobile.Android());
+    // function isMobile() {
+//         ///<summary>Detecting whether the browser is a mobile browser or desktop browser</summary>
+//         ///<returns>A boolean value indicating whether the browser is a mobile browser or not</returns>
+// 
+//         if (sessionStorage.desktop) // desktop storage
+//             return false;
+//         else if (localStorage.mobile) // mobile storage
+//             return true;
+// 
+//         // alternative
+//         var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini', 'windows mobile', 'windows phone', 'iemobile'];
+//         for (var i in mobile) if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) return true;
+// 
+//         // nothing found.. assume desktop
+//         return false;
+//     }
 
     function openAppHtm5() {
-        if (isMobile){
+        if (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()){
             window.open('/html5', '_blank');
             }
     }
 
     function downloadApk() {
-        if (isMobile){
+        if (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()){
             window.open('https://play.google.com/store/apps/details?id=h.n.d.animals.connecting.android', '_blank');}
     }
 
     function downloadIos() {
-        if (isMobile){
+        if (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()){
             window.open('https://apps.apple.com/us/app/animals-connecting/id1500167779?ls=1', '_blank');}
     }
 </script>
