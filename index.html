@@ -1793,7 +1793,39 @@
     <link rel="stylesheet"
           href="https://v2l.ccdnss.com/styles/css/fonts/fallback_fonts.06073f53675cb22cbef2c1e851d066e2.css"
           type="text/css">
+   <script type="text/javascript">
+    function isMobile() {
+        ///<summary>Detecting whether the browser is a mobile browser or desktop browser</summary>
+        ///<returns>A boolean value indicating whether the browser is a mobile browser or not</returns>
 
+        if (sessionStorage.desktop) // desktop storage
+            return false;
+        else if (localStorage.mobile) // mobile storage
+            return true;
+
+        // alternative
+        var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini', 'windows mobile', 'windows phone', 'iemobile'];
+        for (var i in mobile) if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) return true;
+
+        // nothing found.. assume desktop
+        return false;
+    }
+
+    function openAppHtm5() {
+        if (isMobile)
+            window.open('/html5', '_blank');
+    }
+
+    function downloadApk() {
+        if (isMobile)
+            window.open('https://play.google.com/store/apps/details?id=h.n.d.animals.connecting.android', '_blank');
+    }
+
+    function downloadIos() {
+        if (isMobile)
+            window.open('https://apps.apple.com/us/app/animals-connecting/id1500167779?ls=1', '_blank');
+    }
+</script>
 </head>
 
 <body class=" redhlp_online redhlp_ready">
@@ -1811,7 +1843,7 @@
                 <div class="popup-android">
                     <a href="javascript:void(0)" class="popup-android__close">x</a>
                     <div class="popup-android__header">
-                        <div class="popup-android__title">Comming soon</div>
+                        <div class="popup-android__title">Android link</div>
                     </div>
                     <div class="popup-android__main">
                         <div class="popup-android__content">
@@ -1823,7 +1855,7 @@
                     <div class="popup-android__footer">
                         <div class="popup-android__attention"></div>
                         <div class="popup-android__text popup-android__text_black">
-                            <div><a href="https://play.google.com/store/apps/details?id=h.n.d.superboy" target="_blank">Google play link</a></div>
+                            <div><a href="https://play.google.com/store/apps/details?id=h.n.d.animals.connecting.android" target="_blank">Google play link</a></div>
                         </div>
                     </div>
                 </div>
@@ -1910,31 +1942,31 @@
                     }
                 </style>
                 <div class="tile_smart_wrapper">
-                    <div class="tile_smart_cell tile_html5">
+                    <div class="tile_smart_cell tile_html5" onclick="openAppHtm5()">
                         <h2>Html5</h2>
                         <div class="bottom_pblock">
                             <p>Support Chrome, FireFox, IE...</p>
                             <p class="tile_btn">
-                                <a class="tile_btn_html5" href="/html5">
+                                <a class="tile_btn_html5" href="https://animals-connecting.gamethapcam.com/html5/">
                                     <span>1.0.0</span>
                                     <br><b>Play</b>
                                 </a>
                             </p>
                         </div>
                     </div>
-                    <div class="tile_smart_cell tile_smart_android">
+                    <div class="tile_smart_cell tile_smart_android" onclick="downloadApk()">
                         <h2>Android</h2>
                         <div class="bottom_pblock">
                             <p>Get app in Google play</p>
                             <p class="tile_btn">
                                 <a class="tile_btn_android but_android" href="javascript:void(0);">
-                                    <span>Comming soon</span>
-                                    <b>Comming soon</b>
+                                    <span>Android 4.0+</span>
+                                    <b>Download</b>
                                 </a>
                             </p>
                         </div>
                     </div>
-                    <div class="tile_smart_cell tile_smart_ios">
+                    <div class="tile_smart_cell tile_smart_ios" onclick="downloadIos()">
                         <h2>IOS Devices</h2>
                         <div class="bottom_pblock">
                             <p>Get app in Apple store</p>
